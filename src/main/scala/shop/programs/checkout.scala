@@ -25,11 +25,11 @@ final class CheckoutProgram[F[_]: Monad](paymentClient: PaymentClient[F], shoppi
             _ <- shoppingCart.delete(userId)
         } yield orderId 
 
-    def logError(action: String)(details: RetryDetails) : F[Unit] = 
-        details match {
-            case r: WillDelayAndRetry => 
-                Logger[F].error(s"Failed on $action. We retried ${r.retriesSoFar} times.")
-            case g: GivingUp => 
-                Logger[F].error(s"Giving up on $action after ${g.totalRetries} retries.")
-    }
+    //def logError(action: String)(details: RetryDetails) : F[Unit] = 
+    //    details match {
+    //        case r: WillDelayAndRetry => 
+    //            Logger[F].error(s"Failed on $action. We retried ${r.retriesSoFar} times.")
+    //        case g: GivingUp => 
+    //            Logger[F].error(s"Giving up on $action after ${g.totalRetries} retries.")
+    //}
 }
